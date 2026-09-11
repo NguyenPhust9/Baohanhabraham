@@ -14,7 +14,7 @@ Không cần cài đặt thêm thư viện. Nhấn `Ctrl+C` trong terminal để
 
 ## Trang quản trị
 
-Mở [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) để xem dữ liệu khách hàng đã gửi từ form.
+Mở đường dẫn `/admin` trên chính tên miền đang chạy website để vào trang đăng nhập và xem dữ liệu khách hàng. Ví dụ khi chạy thử trên máy là [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin); khi triển khai tại `https://example.com` thì trang quản trị là `https://example.com/admin`.
 
 - Tên đăng nhập mặc định là `admin`.
 - Mật khẩu mặc định là `123456`.
@@ -27,6 +27,8 @@ $env:ADMIN_USERNAME="admin"
 $env:ADMIN_PASSWORD="mat-khau-an-toan"
 python app.py
 ```
+
+Có thể đặt `PUBLIC_URL` thành tên miền thật để đường dẫn hiển thị trong terminal đúng với website đã triển khai.
 
 Dữ liệu form được lưu trong SQLite tại `data/warranties.db`. Thư mục `data/` đã được loại khỏi Git để không công khai thông tin khách hàng.
 
