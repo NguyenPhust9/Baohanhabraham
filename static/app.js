@@ -13,7 +13,7 @@ const messages = {
   full_name: "Vui lòng nhập họ và tên.",
   phone: "Vui lòng nhập số điện thoại hợp lệ.",
   address: "Vui lòng nhập địa chỉ.",
-  model: "Vui lòng nhập mẫu xe đạp.",
+  model: "Vui lòng nhập sản phẩm.",
   purchase_date: "Vui lòng chọn ngày mua hợp lệ."
 };
 
