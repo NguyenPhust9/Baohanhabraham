@@ -11,7 +11,6 @@ import html
 import json
 import os
 import re
-import secrets
 import sqlite3
 from datetime import date, datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -24,27 +23,10 @@ PORT = int(os.environ.get("PORT", "8000"))
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
 DATABASE_PATH = Path(os.environ.get("WARRANTY_DB_PATH", DATA_DIR / "warranties.db"))
-PASSWORD_FILE = DATA_DIR / "admin_password.txt"
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "123456")
 MAX_BODY_SIZE = 16 * 1024
 PHONE_PATTERN = re.compile(r"^(0|\+84)[0-9]{9,10}$")
-
-
-def get_admin_password():
-    configured_password = os.environ.get("ADMIN_PASSWORD")
-    if configured_password:
-        return configured_password, False
-
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    if PASSWORD_FILE.exists():
-        return PASSWORD_FILE.read_text(encoding="utf-8").strip(), False
-
-    password = secrets.token_urlsafe(12)
-    PASSWORD_FILE.write_text(password, encoding="utf-8")
-    return password, True
-
-
-ADMIN_PASSWORD, PASSWORD_WAS_CREATED = get_admin_password()
 
 
 def get_connection():
@@ -262,13 +244,7 @@ if __name__ == "__main__":
     print(f"Abraham Bike is running at http://127.0.0.1:{PORT}")
     print(f"Admin page: http://127.0.0.1:{PORT}/admin")
     print(f"Admin username: {ADMIN_USERNAME}")
-    if PASSWORD_WAS_CREATED:
-        print(f"New admin password: {ADMIN_PASSWORD}")
-        print(f"The password was saved to: {PASSWORD_FILE}")
-    elif os.environ.get("ADMIN_PASSWORD"):
-        print("Admin password: using ADMIN_PASSWORD environment variable")
-    else:
-        print(f"Admin password: stored in {PASSWORD_FILE}")
+    print(f"Admin password: {ADMIN_PASSWORD}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

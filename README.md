@@ -17,8 +17,8 @@ Không cần cài đặt thêm thư viện. Nhấn `Ctrl+C` trong terminal để
 Mở [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) để xem dữ liệu khách hàng đã gửi từ form.
 
 - Tên đăng nhập mặc định là `admin`.
-- Ở lần chạy đầu tiên, mật khẩu ngẫu nhiên được in trong terminal và lưu tại `data/admin_password.txt`.
-- Có thể đặt thông tin đăng nhập riêng bằng biến môi trường `ADMIN_USERNAME` và `ADMIN_PASSWORD`.
+- Mật khẩu mặc định là `123456`.
+- Có thể đặt thông tin đăng nhập an toàn hơn bằng biến môi trường `ADMIN_USERNAME` và `ADMIN_PASSWORD`.
 
 Ví dụ trong PowerShell:
 
@@ -28,6 +28,6 @@ $env:ADMIN_PASSWORD="mat-khau-an-toan"
 python app.py
 ```
 
-Dữ liệu form được lưu trong SQLite tại `data/warranties.db`. Thư mục `data/` đã được loại khỏi Git để không công khai thông tin khách hàng và mật khẩu quản trị.
+Dữ liệu form được lưu trong SQLite tại `data/warranties.db`. Thư mục `data/` đã được loại khỏi Git để không công khai thông tin khách hàng.
 
 Khi triển khai công khai, hãy dùng HTTPS để bảo vệ thông tin đăng nhập và bảo đảm máy chủ có ổ đĩa lưu trữ lâu dài cho database SQLite.
