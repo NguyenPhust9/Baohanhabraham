@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Quản trị bảo hành | Abraham Bike</title>
+  <style>
+    :root { font-family: Inter, Arial, sans-serif; color: #17191d; background: #f3f5f7; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px; }
+    main { max-width: 1400px; margin: auto; }
+    header { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+    h1 { margin: 0 0 5px; font-size: 28px; }
+    p { margin: 0; color: #68717d; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .count { padding: 8px 13px; border-radius: 999px; color: #fff; background: #ff6d22; font-weight: 700; }
+    .logout-form { margin: 0; }
+    .logout { padding: 8px 13px; border: 1px solid #cfd4d9; border-radius: 8px; color: #38414b; background: #fff; cursor: pointer; font-weight: 600; }
+    .logout:hover { border-color: #ff6d22; color: #d95010; }
+    .notice { margin-bottom: 18px; padding: 14px 16px; border: 1px solid #f0c5b8; border-radius: 10px; color: #8d301c; background: #fff1ed; line-height: 1.5; }
+    .table-wrap { overflow-x: auto; border: 1px solid #dde1e5; border-radius: 12px; background: #fff; box-shadow: 0 8px 25px rgba(30, 40, 55, .07); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid #eceef0; text-align: left; vertical-align: top; white-space: nowrap; }
+    th { position: sticky; top: 0; color: #4d5661; background: #f8f9fa; font-size: 12px; text-transform: uppercase; }
+    td:nth-child(4) { min-width: 220px; white-space: normal; }
+    tbody tr:hover { background: #fff8f4; }
+    a { color: #d95010; }
+    .empty { padding: 50px; color: #68717d; text-align: center; }
+    @media (max-width: 700px) { body { padding: 18px; } header { align-items: start; flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>Dữ liệu bảo hành</h1><p>Các đăng ký mới nhất được hiển thị trước.</p></div>
+      <div class="header-actions">
+        <span class="count">{{ rows|length }} đăng ký</span>
+        <form class="logout-form" action="/admin/logout" method="post"><button class="logout" type="submit">Đăng xuất</button></form>
+      </div>
+    </header>
+    {% if database_error %}<div class="notice" role="alert">{{ database_error }}</div>{% endif %}
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Khách hàng</th><th>Điện thoại</th><th>Địa chỉ</th><th>Sản phẩm</th><th>Ngày mua</th><th>Số khung</th><th>Ngày gửi</th></tr></thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td>{{ row.id }}</td>
+            <td><strong>{{ row.full_name }}</strong></td>
+            <td><a href="tel:{{ row.phone }}">{{ row.phone }}</a></td>
+            <td>{{ row.address }}</td>
+            <td>{{ row.product }}</td>
+            <td>{{ row.purchase_date }}</td>
+            <td>{{ row.serial or '—' }}</td>
+            <td>{{ row.created_at }}</td>
+          </tr>
+          {% else %}
+          <tr><td class="empty" colspan="8">Chưa có dữ liệu đăng ký bảo hành.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

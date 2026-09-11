@@ -1,10 +1,11 @@
-# Abraham Bike Landing Page
+# Abraham Bike Warranty
 
-Landing page kích hoạt bảo hành điện tử, chạy bằng web server có sẵn của Python.
+Ứng dụng kích hoạt bảo hành điện tử bằng Flask, chạy được trên máy cá nhân và Vercel.
 
 ## Chạy dự án
 
 ```powershell
+python -m pip install -r requirements.txt
 python app.py
 ```
 
@@ -28,8 +29,17 @@ $env:ADMIN_PASSWORD="mat-khau-an-toan"
 python app.py
 ```
 
-Có thể đặt `PUBLIC_URL` thành tên miền thật để đường dẫn hiển thị trong terminal đúng với website đã triển khai.
-
 Dữ liệu form được lưu trong SQLite tại `data/warranties.db`. Thư mục `data/` đã được loại khỏi Git để không công khai thông tin khách hàng.
 
-Khi triển khai công khai, hãy dùng HTTPS để bảo vệ thông tin đăng nhập và bảo đảm máy chủ có ổ đĩa lưu trữ lâu dài cho database SQLite.
+## Triển khai trên Vercel
+
+Vercel tự nhận diện `app.py` là ứng dụng Flask. Trang quản trị nằm tại `/admin` trên domain của dự án.
+
+Để lưu dữ liệu bền vững trên Vercel:
+
+1. Trong Vercel, mở **Storage/Marketplace** và thêm một PostgreSQL database, ví dụ Neon.
+2. Kết nối database với dự án để có biến môi trường `DATABASE_URL` (ứng dụng cũng nhận `POSTGRES_URL`).
+3. Redeploy dự án.
+4. Trong **Settings → Environment Variables**, nên đặt `ADMIN_USERNAME`, `ADMIN_PASSWORD` và `SECRET_KEY`.
+
+Nếu chưa kết nối PostgreSQL, trang đăng nhập vẫn hoạt động nhưng dashboard sẽ hiển thị cảnh báo và form sẽ chưa thể lưu dữ liệu.
