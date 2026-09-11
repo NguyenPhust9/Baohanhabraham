@@ -42,7 +42,7 @@ form.querySelectorAll("[required]").forEach((field) => {
   });
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const requiredFields = [...form.querySelectorAll("[required]")];
   const valid = requiredFields.map(validateField).every(Boolean);
@@ -52,9 +52,40 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  toast.classList.add("show");
-  form.reset();
-  setTimeout(() => toast.classList.remove("show"), 5000);
+  const submitButton = form.querySelector("button[type='submit']");
+  const originalText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "Đang lưu...";
+
+  try {
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.product = data.model;
+    delete data.model;
+
+    const response = await fetch("/api/warranties", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message || "Không thể lưu thông tin.");
+
+    toast.querySelector(".toast-icon").textContent = "✓";
+    toast.querySelector("strong").textContent = "Kích hoạt thành công!";
+    toast.querySelector("p").textContent = "Abraham Bike đã ghi nhận thông tin của bạn.";
+    toast.classList.remove("error");
+    toast.classList.add("show");
+    form.reset();
+    setTimeout(() => toast.classList.remove("show"), 5000);
+  } catch (error) {
+    toast.querySelector(".toast-icon").textContent = "!";
+    toast.querySelector("strong").textContent = "Chưa thể gửi thông tin";
+    toast.querySelector("p").textContent = error.message;
+    toast.classList.add("error", "show");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalText;
+  }
 });
 
 closeToast.addEventListener("click", () => toast.classList.remove("show"));

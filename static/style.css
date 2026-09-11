@@ -117,6 +117,7 @@ h1, .form-heading h2 { font-family: "Libre Baskerville", Georgia, serif; }
 }
 .submit-button:hover { filter: brightness(1.04); transform: translateY(-1px); }
 .submit-button:active { transform: translateY(1px); }
+.submit-button:disabled { cursor: wait; filter: grayscale(.25); opacity: .75; transform: none; }
 .privacy-note { margin: 8px 0 0; font-size: 6.4px; line-height: 1.4; text-align: center; }
 
 .bike-decoration, .corner-brand svg { fill: none; stroke: #aeb3ba; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
@@ -146,6 +147,7 @@ h1, .form-heading h2 { font-family: "Libre Baskerville", Georgia, serif; }
 }
 .toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .toast-icon { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; color: var(--white); background: #36a269; font-weight: 700; }
+.toast.error .toast-icon { background: #c63f26; }
 .toast div { flex: 1; }
 .toast strong { font-size: 12px; }
 .toast p { margin: 3px 0 0; color: #606975; font-size: 9px; }
