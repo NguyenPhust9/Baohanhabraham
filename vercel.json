@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/warranties",
+      "destination": "/api/index"
+    }
+  ]
+}
