@@ -294,3 +294,99 @@ h1, .form-heading h2 { font-family: "Libre Baskerville", Georgia, serif; }
   .submit-button { margin-top: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }
+
+/* Phần giới thiệu theo mẫu Abraham Bike. */
+.intro-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 650px;
+  padding: 30px 25px 100px;
+  color: #071638;
+  background: #e6f5ff url("warranty-bike-bg.png") center center / cover no-repeat;
+}
+.intro-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(247,252,255,.96), rgba(236,248,255,.78) 62%, rgba(225,244,255,.12));
+}
+.intro-panel .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+  color: #2385dd;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.intro-panel .eyebrow::after { content: ""; width: 48px; height: 2px; background: #2385dd; }
+.intro-panel h1 { font-family: Inter, Arial, sans-serif; font-size: 31px; font-weight: 800; line-height: 1.13; letter-spacing: -1.2px; }
+.intro-panel h1 span { display: block; margin-top: 5px; color: #0065d2; font-size: .86em; }
+.intro-panel .intro-text { margin: 18px 0 23px; color: #42526d; font-size: 12px; line-height: 1.65; }
+.intro-panel .benefits { gap: 12px; }
+.intro-panel .benefit {
+  --benefit-color: #087de0;
+  --benefit-tint: #e1f0ff;
+  grid-template-columns: 52px minmax(0, 1fr) 24px;
+  gap: 11px;
+  min-height: 91px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 18px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 4px 18px rgba(39,99,145,.1);
+}
+.intro-panel .benefit:nth-child(2) { --benefit-color: #219453; --benefit-tint: #e5f4e8; }
+.intro-panel .benefit:nth-child(3) { --benefit-color: #ff6b10; --benefit-tint: #fff0e4; }
+.intro-panel .benefit-icon { width: 52px; height: 62px; border: 0; border-radius: 15px; background: var(--benefit-tint); box-shadow: none; }
+.intro-panel .benefit-icon svg { width: 32px; height: 32px; stroke: var(--benefit-color); stroke-width: 2.1; }
+.intro-panel .benefit h2 { margin: 0; font-size: 12px; line-height: 1.3; }
+.benefit-duration { display: block; margin: 3px 0; color: var(--benefit-color); font-size: 25px; line-height: 1.1; font-weight: 800; letter-spacing: -.6px; }
+.intro-panel .benefit p { color: #42526d; font-size: 9px; line-height: 1.4; }
+.benefit-arrow { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--benefit-tint); color: var(--benefit-color); font-size: 28px; line-height: 1; }
+.intro-panel .support { margin-top: 22px; padding: 15px 12px; border: 1px solid #d7eaf7; border-radius: 19px; background: rgba(228,244,255,.93); box-shadow: 0 5px 20px rgba(39,99,145,.09); }
+.intro-panel .support a { gap: 12px; color: #123074; }
+.support-icon { display: grid; place-items: center; flex: 0 0 43px; height: 43px; border-radius: 50%; background: linear-gradient(135deg,#49baff,#0063d6); }
+.intro-panel .support svg { width: 23px; height: 23px; fill: white; stroke: white; stroke-width: 1; }
+.support-copy { display: grid; gap: 4px; min-width: 0; }
+.support-copy > span { color: #344d6e; font-size: 11px; }
+.intro-panel .support strong { font-size: 23px; font-weight: 800; letter-spacing: -.6px; }
+.support-copy small { color: #42526d; font-size: 8px; line-height: 1.5; }
+.intro-tagline { position: absolute; left: 30px; bottom: 13px; z-index: 1; margin: 0; color: #0071d9; font-family: "Segoe Print", cursive; font-size: 17px; font-style: italic; line-height: 1.5; transform: rotate(-6deg); }
+.intro-tagline span { padding-left: 25px; }
+.intro-wave { position: absolute; bottom: 0; left: 0; width: 100%; height: 92px; z-index: 0; pointer-events: none; }
+@media (min-width: 900px) and (min-height: 700px) {
+  html, body { height: auto; overflow: auto; }
+  .page-shell { height: auto; }
+  .warranty-card { height: auto; min-height: max(760px, calc(100vh - 48px)); }
+  .intro-panel { padding: 35px 32px 110px; }
+  .intro-panel .eyebrow { font-size: 14px; }
+  .intro-panel h1 { font-size: 42px; }
+  .intro-panel .intro-text { font-size: 14px; margin-bottom: 26px; }
+  .intro-panel .benefits { gap: 16px; }
+  .intro-panel .benefit { min-height: 109px; grid-template-columns: 63px minmax(0, 1fr) 28px; gap: 13px; padding: 14px; }
+  .intro-panel .benefit-icon { width: 63px; height: 75px; }
+  .intro-panel .benefit-icon svg { width: 38px; height: 38px; }
+  .intro-panel .benefit h2 { font-size: 15px; }
+  .benefit-duration { font-size: 32px; }
+  .intro-panel .benefit p { font-size: 11px; }
+  .benefit-arrow { width: 28px; height: 28px; }
+  .intro-panel .support { margin-top: 26px; padding: 18px; }
+  .intro-panel .support strong { font-size: 29px; }
+  .support-copy > span { font-size: 13px; }
+  .support-copy small { font-size: 10px; }
+  .support-icon { flex-basis: 52px; height: 52px; }
+}
+@media (max-width: 760px) {
+  .intro-panel { min-height: 670px; padding: 30px 25px 105px; }
+  .intro-content, .intro-panel .support { max-width: 420px; }
+}
+@media (max-width: 380px) {
+  .intro-panel { padding-left: 18px; padding-right: 18px; }
+  .intro-panel h1 { font-size: 28px; }
+  .intro-panel .benefit { grid-template-columns: 45px minmax(0,1fr) 20px; gap: 8px; padding: 10px; }
+  .intro-panel .benefit-icon { width: 45px; }
+  .intro-panel .support strong { font-size: 21px; }
+}
