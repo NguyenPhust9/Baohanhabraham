@@ -10,9 +10,11 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from flask import Flask, jsonify, redirect, render_template, request, send_from_directory, session, url_for
+from dotenv import load_dotenv
 
 
 PROJECT_DIR = Path(__file__).resolve().parent
+load_dotenv(PROJECT_DIR / ".env")
 DATA_DIR = PROJECT_DIR / "data"
 DATABASE_PATH = Path(os.environ.get("WARRANTY_DB_PATH", DATA_DIR / "warranties.db"))
 DATABASE_URL = (

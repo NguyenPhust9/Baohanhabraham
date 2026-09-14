@@ -4,6 +4,8 @@
 
 ## Chạy dự án
 
+Điền chuỗi kết nối PostgreSQL vào `DATABASE_URL` trong file `.env` ở thư mục gốc. Ứng dụng tự đọc file này khi khởi động; biến môi trường đã được đặt bên ngoài có ưu tiên cao hơn. Nếu để trống kết nối khi chạy trên máy, ứng dụng dùng SQLite. File `.env` đã được loại khỏi Git.
+
 ```powershell
 python -m pip install -r requirements.txt
 python app.py
