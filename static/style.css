@@ -358,22 +358,19 @@ h1, .form-heading h2 { font-family: "Libre Baskerville", Georgia, serif; }
 .intro-tagline span { padding-left: 25px; }
 .intro-wave { position: absolute; bottom: 0; left: 0; width: 100%; height: 92px; z-index: 0; pointer-events: none; }
 @media (min-width: 900px) and (min-height: 700px) {
-  html, body { height: auto; overflow: auto; }
-  .page-shell { height: auto; }
-  .warranty-card { height: auto; min-height: max(760px, calc(100vh - 48px)); }
-  .intro-panel { padding: 35px 32px 110px; }
+  .intro-panel { padding: 28px 32px 75px; }
   .intro-panel .eyebrow { font-size: 14px; }
-  .intro-panel h1 { font-size: 42px; }
-  .intro-panel .intro-text { font-size: 14px; margin-bottom: 26px; }
-  .intro-panel .benefits { gap: 16px; }
-  .intro-panel .benefit { min-height: 109px; grid-template-columns: 63px minmax(0, 1fr) 28px; gap: 13px; padding: 14px; }
-  .intro-panel .benefit-icon { width: 63px; height: 75px; }
+  .intro-panel h1 { font-size: 36px; }
+  .intro-panel .intro-text { font-size: 13px; margin: 16px 0 18px; }
+  .intro-panel .benefits { gap: 12px; }
+  .intro-panel .benefit { min-height: 91px; grid-template-columns: 56px minmax(0, 1fr) 28px; gap: 13px; padding: 12px; }
+  .intro-panel .benefit-icon { width: 56px; height: 63px; }
   .intro-panel .benefit-icon svg { width: 38px; height: 38px; }
   .intro-panel .benefit h2 { font-size: 15px; }
-  .benefit-duration { font-size: 32px; }
+  .benefit-duration { font-size: 28px; }
   .intro-panel .benefit p { font-size: 11px; }
   .benefit-arrow { width: 28px; height: 28px; }
-  .intro-panel .support { margin-top: 26px; padding: 18px; }
+  .intro-panel .support { margin-top: 20px; padding: 14px; }
   .intro-panel .support strong { font-size: 29px; }
   .support-copy > span { font-size: 13px; }
   .support-copy small { font-size: 10px; }
@@ -390,3 +387,20 @@ h1, .form-heading h2 { font-family: "Libre Baskerville", Georgia, serif; }
   .intro-panel .benefit-icon { width: 45px; }
   .intro-panel .support strong { font-size: 21px; }
 }
+
+/* Tính kích thước nội dung trước khi thu phóng để mọi phần đều nằm trong màn hình. */
+html, body { width: 100%; height: 100%; overflow: hidden; }
+.page-shell {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: min(1160px, calc(100% - 24px));
+  height: auto;
+  margin: 0;
+  transform: translate(-50%, -50%) scale(var(--viewport-scale, 1));
+  transform-origin: center;
+}
+.warranty-card { height: auto; min-height: 0; }
+.intro-panel { min-height: 0; }
+.intro-wave { height: 65px; }
+.intro-tagline { bottom: 8px; font-size: 14px; }
