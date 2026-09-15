@@ -89,26 +89,3 @@ form.addEventListener("submit", async (event) => {
 });
 
 closeToast.addEventListener("click", () => toast.classList.remove("show"));
-
-const pageShell = document.querySelector(".page-shell");
-
-function fitPageToViewport() {
-  const viewport = window.visualViewport;
-  const width = viewport?.width ?? window.innerWidth;
-  const height = viewport?.height ?? window.innerHeight;
-  const scale = Math.min(
-    1,
-    Math.max(1, width - 24) / pageShell.offsetWidth,
-    Math.max(1, height - 24) / pageShell.offsetHeight
-  );
-  pageShell.style.setProperty("--viewport-scale", String(scale));
-  pageShell.style.left = `${(viewport?.offsetLeft ?? 0) + width / 2}px`;
-  pageShell.style.top = `${(viewport?.offsetTop ?? 0) + height / 2}px`;
-}
-
-fitPageToViewport();
-new ResizeObserver(fitPageToViewport).observe(pageShell);
-window.addEventListener("resize", fitPageToViewport);
-window.visualViewport?.addEventListener("resize", fitPageToViewport);
-window.visualViewport?.addEventListener("scroll", fitPageToViewport);
-document.fonts.ready.then(fitPageToViewport);
