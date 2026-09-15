@@ -6,6 +6,10 @@
       "destination": "/api/index"
     },
     {
+      "source": "/admin/",
+      "destination": "/api/index"
+    },
+    {
       "source": "/admin/:path*",
       "destination": "/api/index"
     },
